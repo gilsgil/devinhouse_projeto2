@@ -156,8 +156,7 @@ export default function Cadastro() {
                     type="checkbox"
                     checked={checkautorizacao1}
                     onChange={handleCheckAutorizacao1}
-                    type="checkbox"
-                    name="inputRestricao2"
+                    name="inputRestricao1"
                   />
                   <label
                     className="form-check-label"
@@ -170,39 +169,38 @@ export default function Cadastro() {
                     type="checkbox"
                     checked={checkautorizacao2}
                     onChange={handleCheckAutorizacao2}
-                    type="checkbox"
                     name="inputRestricao2"
                   />
 
                   <label htmlFor="inputAutorizacao2">Não</label>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="inputNome">
+                  <label htmlFor="inputAutorizacao">
                     Lista de autorizados a buscar a criança
                   </label>
                   <input
                     className="form-control"
                     type="text"
-                    name="inputNome"
-                    id="inputNome"
+                    name="inputAutorizacao"
+                    id="inputAutorizacao"
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="inputNome">Nome do aluno</label>
+                  <label htmlFor="inputTurma">Turma</label>
                   <input
                     className="form-control"
                     type="text"
-                    name="inputNome"
-                    id="inputNome"
+                    name="inputTurma"
+                    id="inputTurma"
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="inputNome">Nome do aluno</label>
-                  <input
+                  <label htmlFor="inputObservacao">Observações</label>
+                  <textarea
                     className="form-control"
+                    maxLength="100"
                     type="text"
-                    name="inputNome"
-                    id="inputNome"
+                    name="textRestricao"
                   />
                 </div>
               </div>
