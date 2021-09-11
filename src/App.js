@@ -2,8 +2,8 @@ import "./App.css";
 import React from "react";
 import Header from "./components/Header/Header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Dashboard from "./components/pages/Dashboard/Dashboard";
-import Mensagem from "./components/pages/Mensagem/Mensagem";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Mensagem from "./pages/Mensagem/Mensagem";
 
 class App extends React.Component {
   render() {
