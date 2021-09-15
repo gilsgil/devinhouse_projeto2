@@ -15,3 +15,11 @@
 .button-mensagem{
     background-color: blue;
 }
+
+.selects-container{
+    margin-top: 3em;
+}
+
+.table-container {
+    margin-top: 3em !important;
+}

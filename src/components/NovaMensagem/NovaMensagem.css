@@ -1,0 +1,9 @@
+.selects-border-container{
+    border: 1px solid lightgrey;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.text-area{
+    margin-top: 2em;
+}
