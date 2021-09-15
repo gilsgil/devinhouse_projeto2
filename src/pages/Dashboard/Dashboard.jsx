@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import GraficoBar from "../../Graficos/GraficoBar";
-import GraficoLine from "../../Graficos/GraficoLine";
+import GraficoBar from "../../components/Graficos/GraficoBar";
+import GraficoLine from "../../components/Graficos/GraficoLine";
 import "./Dashboard.css";
 
 function Dashboard() {
