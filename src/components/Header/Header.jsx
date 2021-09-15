@@ -5,7 +5,7 @@ import "./Header.css";
 
 function Header() {
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar className="header" bg="dark" variant="dark" sticky="top">
       <Container>
         <Navbar.Brand>ZAP SYSTEM</Navbar.Brand>
         <Nav className="me-auto">
