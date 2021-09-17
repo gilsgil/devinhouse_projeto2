@@ -4,13 +4,14 @@ import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Mensagens.css";
 import swal from "sweetalert";
+import ReactInputMask from "react-input-mask";
 
 function Mensagens() {
-
   // states
   const [messages, setMessages] = useState([]);
   const [triggers, setTriggers] = useState([]);
   const [channels, setChannels] = useState([]);
+  const [timer, setTimer] = useState();
 
   // consome as messages
   useEffect(() => {
@@ -42,6 +43,11 @@ function Mensagens() {
       title: "Mensagem",
       text: message,
     });
+  };
+
+  // handler do input timer
+  const handleTimer = (e) => {
+    setTimer(e.target.value);
   };
 
   return (
@@ -85,7 +91,14 @@ function Mensagens() {
             </Col>
             <Col md={4}>
               <Form.Label>Timer</Form.Label>
-              <Form.Control type="number" required></Form.Control>
+              <ReactInputMask
+                className="form-control"
+                mask="99:99"
+                onChange={handleTimer}
+                type="text"
+                required
+                value={timer}
+              ></ReactInputMask>
             </Col>
           </Row>
         </Form.Group>

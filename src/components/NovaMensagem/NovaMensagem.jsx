@@ -5,16 +5,17 @@ import "./NovaMensagem.css";
 import swal from "sweetalert";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
+import ReactInputMask from "react-input-mask";
 
 function NovaMensagem() {
-  const history = useHistory()
+  const history = useHistory();
 
   // modelo de alerta para quando o formulário é preenchido corretamente
   const submitAlert = () =>
     swal({
       text: "Mensagem cadastrada com sucesso!",
-      onConfirm: history.push("/mensagem"),
-    })
+      onClose: history.push("/mensagem"),
+    });
 
   // states de requisição
   const [triggers, setTriggers] = useState([]);
@@ -53,7 +54,7 @@ function NovaMensagem() {
 
   // handler para o envio do formulário ao clicar no botão "Cadastrar"
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     postData();
     submitAlert();
   };
@@ -141,12 +142,14 @@ function NovaMensagem() {
                 </Col>
                 <Col md={4}>
                   <Form.Label>Timer</Form.Label>
-                  <Form.Control
+                  <ReactInputMask
+                    className="form-control"
+                    mask="99:99"
                     onChange={handleTimer}
                     type="text"
                     required
                     value={timer}
-                  ></Form.Control>
+                  ></ReactInputMask>
                 </Col>
               </Row>
 
