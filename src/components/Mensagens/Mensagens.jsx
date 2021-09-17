@@ -12,6 +12,9 @@ function Mensagens() {
   const [triggers, setTriggers] = useState([]);
   const [channels, setChannels] = useState([]);
   const [timer, setTimer] = useState();
+  const [gatilho, setGatilho] = useState();
+  const [canal, setCanal] = useState();
+  const [filtered, setFiltered] = useState([]);
 
   // consome as messages
   useEffect(() => {
@@ -37,6 +40,14 @@ function Mensagens() {
       .catch((err) => console.log(err));
   }, []);
 
+  // consome as mensagens no primeiro carregamento
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/messages")
+      .then((res) => setFiltered(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
   // mensagem de modal
   const messageAlert = (message) => {
     swal({
@@ -50,12 +61,68 @@ function Mensagens() {
     setTimer(e.target.value);
   };
 
+  // handler do input timer
+  const handleGatilho = (e) => {
+    setGatilho(e.target.value);
+  };
+
+  // handler do input timer
+  const handleCanal = (e) => {
+    setCanal(e.target.value);
+  };
+
+  // handler de pesquisa com condicionais para todas as opções
+
+  const handlePesquisar = () => {
+    if (gatilho && !canal && !timer) {
+      setFiltered(
+        messages.filter((message) => message.trigger.includes(gatilho))
+      );
+    }
+    if (gatilho && canal && !timer) {
+      setFiltered(
+        messages.filter(
+          (message) =>
+            message.trigger.includes(gatilho) && message.channel.includes(canal)
+        )
+      );
+    }
+    if (!gatilho && canal && !timer) {
+      setFiltered(
+        messages.filter((message) => message.channel.includes(canal))
+      );
+    }
+    if (!gatilho && canal && timer) {
+      setFiltered(
+        messages.filter(
+          (message) =>
+            message.channel.includes(canal) && message.timer.includes(timer)
+        )
+      );
+    }
+    if (!gatilho && !canal && timer) {
+      setFiltered(messages.filter((message) => message.timer.includes(timer)));
+    }
+    if (gatilho && !canal && timer) {
+      setFiltered(
+        messages.filter(
+          (message) =>
+            message.trigger.includes(gatilho) && message.timer.includes(timer)
+        )
+      );
+    }
+  };
+
   return (
     <Form>
       <Container className="mensagens-container">
         <h2>Mensagens</h2>
         <Link to="#" style={{ textDecoration: "none", marginLeft: "auto" }}>
-          <Button variant="light" className="button-pesquisar">
+          <Button
+            variant="light"
+            className="button-pesquisar"
+            onClick={handlePesquisar}
+          >
             Pesquisar
           </Button>
         </Link>
@@ -69,7 +136,7 @@ function Mensagens() {
           <Row>
             <Col md={4}>
               <Form.Label>Gatilho</Form.Label>
-              <Form.Control as="select" required>
+              <Form.Control as="select" required onChange={handleGatilho}>
                 <option value=""></option>
                 {triggers.map((sel) => (
                   <option key={sel.id} value={sel.name}>
@@ -80,7 +147,7 @@ function Mensagens() {
             </Col>
             <Col md={4}>
               <Form.Label>Canal</Form.Label>
-              <Form.Control as="select" required>
+              <Form.Control as="select" required onChange={handleCanal}>
                 <option value=""></option>
                 {channels.map((sel) => (
                   <option key={sel.id} value={sel.name}>
@@ -115,7 +182,7 @@ function Mensagens() {
             </tr>
           </thead>
           <tbody>
-            {messages.map((msg) => (
+            {filtered.map((msg) => (
               <tr key={msg.id}>
                 <td>{msg.trigger}</td>
                 <td>{msg.channel}</td>
