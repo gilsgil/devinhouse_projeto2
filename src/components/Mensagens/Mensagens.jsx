@@ -6,11 +6,11 @@ import "./Mensagens.css";
 import swal from "sweetalert";
 
 function Mensagens() {
+
   // states
   const [messages, setMessages] = useState([]);
   const [triggers, setTriggers] = useState([]);
   const [channels, setChannels] = useState([]);
-  const [timers, setTimers] = useState([]);
 
   // consome as messages
   useEffect(() => {
@@ -48,12 +48,13 @@ function Mensagens() {
     <Form>
       <Container className="mensagens-container">
         <h2>Mensagens</h2>
-        <Link to="#" className="button-pesquisar">
-          <Button>Pesquisar</Button>
+        <Link to="#" style={{ textDecoration: "none", marginLeft: "auto" }}>
+          <Button variant="light" className="button-pesquisar">
+            Pesquisar
+          </Button>
         </Link>
-
-        <Link to="/nova" className="button-mensagem">
-          <Button>Nova mensagem</Button>
+        <Link style={{ color: "white", textDecoration: "none" }} to="/nova">
+          <Button className="button-mensagem">Nova mensagem</Button>
         </Link>
       </Container>
 
@@ -65,7 +66,7 @@ function Mensagens() {
               <Form.Control as="select" required>
                 <option value=""></option>
                 {triggers.map((sel) => (
-                  <option key={sel.id} value={sel.id}>
+                  <option key={sel.id} value={sel.name}>
                     {sel.name}
                   </option>
                 ))}
@@ -76,7 +77,7 @@ function Mensagens() {
               <Form.Control as="select" required>
                 <option value=""></option>
                 {channels.map((sel) => (
-                  <option key={sel.id} value={sel.id}>
+                  <option key={sel.id} value={sel.name}>
                     {sel.name}
                   </option>
                 ))}

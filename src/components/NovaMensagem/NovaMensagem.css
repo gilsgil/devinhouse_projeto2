@@ -1,9 +1,16 @@
-.selects-border-container{
+.selects-border-container {
     border: 1px solid lightgrey;
     padding: 10px;
     border-radius: 5px;
 }
 
-.text-area{
+.text-area {
     margin-top: 2em;
+}
+
+.button-voltar {
+    margin-right: 1em;
+    color: blue !important;
+    border: 1px solid black !important;
+    margin-left: auto;
 }

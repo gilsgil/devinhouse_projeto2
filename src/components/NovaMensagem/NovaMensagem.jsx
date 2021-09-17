@@ -1,22 +1,39 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Col, Container, Form, FormGroup, Row } from "react-bootstrap";
 import "./NovaMensagem.css";
+import swal from "sweetalert";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 function NovaMensagem() {
-  const [messages, setMessages] = useState([]);
+  const history = useHistory()
+
+  // modelo de alerta para quando o formulário é preenchido corretamente
+  const submitAlert = () =>
+    swal({
+      text: "Mensagem cadastrada com sucesso!",
+      onConfirm: history.push("/mensagem"),
+    })
+
+  // states de requisição
   const [triggers, setTriggers] = useState([]);
   const [channels, setChannels] = useState([]);
-  const [timers, setTimers] = useState([]);
 
-  // consome as messages
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/messages")
-      .then((res) => setMessages(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+  // states dos campos
+  const [gatilho, setGatilho] = useState();
+  const [canal, setCanal] = useState();
+  const [timer, setTimer] = useState();
+  const [mensagem, setMensagem] = useState();
+
+  // dados do formulário para envio
+  const formData = {
+    id: Math.random(),
+    channel: canal,
+    trigger: gatilho,
+    timer: timer,
+    message: mensagem,
+  };
 
   // consome os triggers
   useEffect(() => {
@@ -34,64 +51,122 @@ function NovaMensagem() {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleSubmit = () => {};
+  // handler para o envio do formulário ao clicar no botão "Cadastrar"
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    postData();
+    submitAlert();
+  };
+
+  // handler para o campo de mensagens
+  const handleMensagem = (e) => {
+    setMensagem(e.target.value);
+  };
+
+  // handler para o campo de gatilhos
+  const handleGatilho = (e) => {
+    setGatilho(e.target.value);
+  };
+
+  // handler para o campo de canais
+  const handleCanal = (e) => {
+    setCanal(e.target.value);
+  };
+
+  // handler para o campo de timer
+  const handleTimer = (e) => {
+    setTimer(e.target.value);
+  };
+
+  // realiza o post das informações do formulário
+  const postData = () => {
+    axios
+      .post("http://localhost:3001/messages", formData)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
   return (
-    <Form>
-      <Container className="mensagens-container">
-        <h2>Mensagens</h2>
-        <Link to="/mensagem" className="button-pesquisar">
-          <Button>Voltar</Button>
-        </Link>
+    <Form onSubmit={handleSubmit}>
+      <FormGroup controlId="formButtons">
+        <Container className="mensagens-container">
+          <h2>Mensagens</h2>
 
-        <Link className="button-mensagem">
-          <Button type="submit" onClick={handleSubmit}>
-            Cadastrar
-          </Button>
-        </Link>
-      </Container>
+          <Link to="/mensagem" style={{ marginLeft: "auto" }}>
+            <Button className="button-voltar" variant="light">
+              Voltar
+            </Button>
+          </Link>
 
-      <Container className="selects-container">
-        <Container className="selects-border-container">
-          <Form.Group>
-            <Row>
-              <Col md={4}>
-                <Form.Label>Gatilho</Form.Label>
-                <Form.Control as="select" required>
-                  <option value=""></option>
-                  {triggers.map((sel) => (
-                    <option key={sel.id} value={sel.id}>
-                      {sel.name}
-                    </option>
-                  ))}
-                </Form.Control>
-              </Col>
-              <Col md={4}>
-                <Form.Label>Canal</Form.Label>
-                <Form.Control as="select" required>
-                  <option value=""></option>
-                  {channels.map((sel) => (
-                    <option key={sel.id} value={sel.id}>
-                      {sel.name}
-                    </option>
-                  ))}
-                </Form.Control>
-              </Col>
-              <Col md={4}>
-                <Form.Label>Timer</Form.Label>
-                <Form.Control type="number" required></Form.Control>
-              </Col>
-            </Row>
-
-            <Row className="text-area">
-              <Col md={12}>
-                <Form.Label>Mensagem</Form.Label>
-                <Form.Control as="textarea" rows={6}></Form.Control>
-              </Col>
-            </Row>
-          </Form.Group>
+          <Button type="submit">Cadastrar</Button>
         </Container>
-      </Container>
+      </FormGroup>
+
+      <FormGroup controlId="formInputs">
+        <Container className="selects-container">
+          <Container className="selects-border-container">
+            <Form.Group>
+              <Row>
+                <Col md={4}>
+                  <Form.Label>Gatilho</Form.Label>
+                  <Form.Control
+                    as="select"
+                    required
+                    value={gatilho}
+                    onChange={handleGatilho}
+                  >
+                    <option value=""></option>
+                    {triggers.map((sel) => (
+                      <option key={sel.id} value={sel.name}>
+                        {sel.name}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Col>
+                <Col md={4}>
+                  <Form.Label>Canal</Form.Label>
+                  <Form.Control
+                    as="select"
+                    required
+                    value={canal}
+                    onChange={handleCanal}
+                  >
+                    <option value=""></option>
+                    {channels.map((sel) => (
+                      <option key={sel.id} value={sel.name}>
+                        {sel.name}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Col>
+                <Col md={4}>
+                  <Form.Label>Timer</Form.Label>
+                  <Form.Control
+                    onChange={handleTimer}
+                    type="text"
+                    required
+                    value={timer}
+                  ></Form.Control>
+                </Col>
+              </Row>
+
+              <Row className="text-area">
+                <Col md={12}>
+                  <Form.Label>Mensagem</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={6}
+                    onChange={handleMensagem}
+                    required
+                  >
+                    {mensagem}
+                  </Form.Control>
+                </Col>
+              </Row>
+            </Form.Group>
+          </Container>
+        </Container>
+      </FormGroup>
     </Form>
   );
 }
