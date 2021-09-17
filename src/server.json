@@ -34,55 +34,6 @@
       "trigger": "fez_pix",
       "timer": "23:23",
       "message": "Pix enviado!"
-    },
-    {
-      "id": 0.24043623704766492,
-      "channel": "whatsapp",
-      "trigger": "abertura_conta",
-      "timer": "dfgdfg",
-      "message": "dfgdfg"
-    },
-    {
-      "id": 0.6790675226756495,
-      "channel": "email",
-      "trigger": "fez_pix",
-      "timer": "sdfsdf",
-      "message": "sdfsf"
-    },
-    {
-      "id": 0.4203112091992147,
-      "channel": "whatsapp",
-      "trigger": "fez_pix",
-      "timer": "sdfsdf",
-      "message": "sdfsdf"
-    },
-    {
-      "id": 0.2985913749698601,
-      "channel": "sms",
-      "trigger": "recarregou_celular",
-      "timer": "sdfsdfsdfs",
-      "message": "sdfsdfsdfsdfsdfsdf"
-    },
-    {
-      "id": 0.9088727155833884,
-      "channel": "email",
-      "trigger": "abertura_conta",
-      "timer": "asda",
-      "message": "asdasdasdasdasd"
-    },
-    {
-      "id": 0.589706706280805,
-      "channel": "whatsapp",
-      "trigger": "abertura_conta",
-      "timer": "aaaaaaaaaa",
-      "message": "aaaaaaaaaaa"
-    },
-    {
-      "id": 0.4156827101626306,
-      "channel": "sms",
-      "trigger": "abertura_conta",
-      "timer": "55:55",
-      "message": "asdasdasdasdasdasdhashdasdjkasd"
     }
   ],
   "channels": [
