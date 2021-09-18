@@ -34,6 +34,27 @@
       "trigger": "fez_pix",
       "timer": "23:23",
       "message": "Pix enviado!"
+    },
+    {
+      "id": 0.5471035898009331,
+      "channel": "email",
+      "trigger": "fez_pix",
+      "timer": "15:15",
+      "message": "asdasdasdasd"
+    },
+    {
+      "id": 0.9222754662060582,
+      "channel": "email",
+      "trigger": "abertura_conta",
+      "timer": "15:15",
+      "message": "asdasdsad"
+    },
+    {
+      "id": 0.7468534343509126,
+      "channel": "email",
+      "trigger": "abertura_conta",
+      "timer": "34:24",
+      "message": "asdadasda"
     }
   ],
   "channels": [

@@ -88,89 +88,96 @@ function NovaMensagem() {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormGroup controlId="formButtons">
-        <Container className="mensagens-container">
-          <h2>Mensagens</h2>
+    <Container>
+      <Form onSubmit={handleSubmit}>
+        <FormGroup controlId="formButtons">
+          <Container className="mensagens-container">
+            <Row>
+              <Col>
+                <h2>Mensagens</h2>
+              </Col>
+              <Col align="end">
+                <Link to="/mensagem" style={{ marginLeft: "auto" }}>
+                  <Button className="button-voltar" variant="light">
+                    Voltar
+                  </Button>
+                </Link>
 
-          <Link to="/mensagem" style={{ marginLeft: "auto" }}>
-            <Button className="button-voltar" variant="light">
-              Voltar
-            </Button>
-          </Link>
-
-          <Button type="submit">Cadastrar</Button>
-        </Container>
-      </FormGroup>
-
-      <FormGroup controlId="formInputs">
-        <Container className="selects-container">
-          <Container className="selects-border-container">
-            <Form.Group>
-              <Row>
-                <Col md={4}>
-                  <Form.Label>Gatilho</Form.Label>
-                  <Form.Control
-                    as="select"
-                    required
-                    value={gatilho}
-                    onChange={handleGatilho}
-                  >
-                    <option value=""></option>
-                    {triggers.map((sel) => (
-                      <option key={sel.id} value={sel.name}>
-                        {sel.name}
-                      </option>
-                    ))}
-                  </Form.Control>
-                </Col>
-                <Col md={4}>
-                  <Form.Label>Canal</Form.Label>
-                  <Form.Control
-                    as="select"
-                    required
-                    value={canal}
-                    onChange={handleCanal}
-                  >
-                    <option value=""></option>
-                    {channels.map((sel) => (
-                      <option key={sel.id} value={sel.name}>
-                        {sel.name}
-                      </option>
-                    ))}
-                  </Form.Control>
-                </Col>
-                <Col md={4}>
-                  <Form.Label>Timer</Form.Label>
-                  <ReactInputMask
-                    className="form-control"
-                    mask="99:99"
-                    onChange={handleTimer}
-                    type="text"
-                    required
-                    value={timer}
-                  ></ReactInputMask>
-                </Col>
-              </Row>
-
-              <Row className="text-area">
-                <Col md={12}>
-                  <Form.Label>Mensagem</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={6}
-                    onChange={handleMensagem}
-                    required
-                  >
-                    {mensagem}
-                  </Form.Control>
-                </Col>
-              </Row>
-            </Form.Group>
+                <Button type="submit">Cadastrar</Button>
+              </Col>
+            </Row>
           </Container>
-        </Container>
-      </FormGroup>
-    </Form>
+        </FormGroup>
+
+        <FormGroup controlId="formInputs">
+          <Container className="selects-container">
+            <Container className="selects-border-container">
+              <Form.Group>
+                <Row>
+                  <Col md={4}>
+                    <Form.Label>Gatilho</Form.Label>
+                    <Form.Control
+                      as="select"
+                      required
+                      value={gatilho}
+                      onChange={handleGatilho}
+                    >
+                      <option value=""></option>
+                      {triggers.map((sel) => (
+                        <option key={sel.id} value={sel.name}>
+                          {sel.name}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  </Col>
+                  <Col md={4}>
+                    <Form.Label>Canal</Form.Label>
+                    <Form.Control
+                      as="select"
+                      required
+                      value={canal}
+                      onChange={handleCanal}
+                    >
+                      <option value=""></option>
+                      {channels.map((sel) => (
+                        <option key={sel.id} value={sel.name}>
+                          {sel.name}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  </Col>
+                  <Col md={4}>
+                    <Form.Label>Timer</Form.Label>
+                    <ReactInputMask
+                      className="form-control"
+                      mask="99:99"
+                      onChange={handleTimer}
+                      type="text"
+                      required
+                      value={timer}
+                    ></ReactInputMask>
+                  </Col>
+                </Row>
+
+                <Row className="text-area">
+                  <Col md={12}>
+                    <Form.Label>Mensagem</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      rows={6}
+                      onChange={handleMensagem}
+                      required
+                    >
+                      {mensagem}
+                    </Form.Control>
+                  </Col>
+                </Row>
+              </Form.Group>
+            </Container>
+          </Container>
+        </FormGroup>
+      </Form>
+    </Container>
   );
 }
 

@@ -1,14 +1,13 @@
 .mensagens-container {
     margin-top: 3em;
-    display: flex;
     color: blue;
+    display: flexbox
 }
 
 .button-pesquisar {
     margin-right: 1em;
     color: blue !important;
     border: 1px solid black !important;
-    margin-left: auto;
     background-color: white !important;
 }
 
@@ -18,4 +17,28 @@
 
 .table-container {
     margin-top: 3em !important;
+}
+
+td {
+    max-width: 50px;
+    text-align: center;
+}
+
+th {
+    max-width: 50px;
+    text-align: center !important;
+}
+
+.swal-modal {
+    background-color: blue;
+    border: 3px solid white;
+}
+
+.swal-text, .swal-title {
+    color: white;
+}
+
+.swal-button{
+    background-color: white;
+    color: black;
 }

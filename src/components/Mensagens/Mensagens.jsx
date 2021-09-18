@@ -111,30 +111,44 @@ function Mensagens() {
         )
       );
     }
+    if (!gatilho && !canal && !timer) {
+      setFiltered(
+        messages.filter(
+          (message) =>
+            message.trigger.includes(gatilho) && message.trigger.includes("")
+        )
+      );
+    }
   };
 
   return (
-    <Form>
+    <Container>
       <Container className="mensagens-container">
-        <h2>Mensagens</h2>
-        <Link to="#" style={{ textDecoration: "none", marginLeft: "auto" }}>
-          <Button
-            variant="light"
-            className="button-pesquisar"
-            onClick={handlePesquisar}
-          >
-            Pesquisar
-          </Button>
-        </Link>
-        <Link style={{ color: "white", textDecoration: "none" }} to="/nova">
-          <Button className="button-mensagem">Nova mensagem</Button>
-        </Link>
+        <Row>
+          <Col sm={6} md={6} lg={6}>
+            <h2>Mensagens</h2>
+          </Col>
+          <Col sm={6} md={6} lg={6} align="end">
+            <Link to="#" style={{ textDecoration: "none", marginLeft: "auto" }}>
+              <Button
+                variant="light"
+                className="button-pesquisar"
+                onClick={handlePesquisar}
+              >
+                Pesquisar
+              </Button>
+            </Link>
+            <Link style={{ color: "white", textDecoration: "none" }} to="/nova">
+              <Button className="button-mensagem">Nova mensagem</Button>
+            </Link>
+          </Col>
+        </Row>
       </Container>
 
       <Container className="selects-container">
         <Form.Group>
           <Row>
-            <Col md={4}>
+            <Col sm={4} md={4} lg={4}>
               <Form.Label>Gatilho</Form.Label>
               <Form.Control as="select" required onChange={handleGatilho}>
                 <option value=""></option>
@@ -145,7 +159,7 @@ function Mensagens() {
                 ))}
               </Form.Control>
             </Col>
-            <Col md={4}>
+            <Col xs={12} sm={4} md={4} lg={4}>
               <Form.Label>Canal</Form.Label>
               <Form.Control as="select" required onChange={handleCanal}>
                 <option value=""></option>
@@ -156,7 +170,7 @@ function Mensagens() {
                 ))}
               </Form.Control>
             </Col>
-            <Col md={4}>
+            <Col sm={4} md={4} lg={4}>
               <Form.Label>Timer</Form.Label>
               <ReactInputMask
                 className="form-control"
@@ -171,10 +185,10 @@ function Mensagens() {
         </Form.Group>
       </Container>
 
-      <Container className="table-container">
+      <Container fluid className="table-container">
         <Table striped bordered hover>
           <thead>
-            <tr align="center">
+            <tr >
               <th>Gatilho</th>
               <th>Canal</th>
               <th>Tempo</th>
@@ -187,7 +201,7 @@ function Mensagens() {
                 <td>{msg.trigger}</td>
                 <td>{msg.channel}</td>
                 <td>{msg.timer}</td>
-                <td align="center">
+                <td >
                   <Button onClick={() => messageAlert(msg.message)}>
                     Ver mensagem
                   </Button>
@@ -197,7 +211,7 @@ function Mensagens() {
           </tbody>
         </Table>
       </Container>
-    </Form>
+    </Container>
   );
 }
 
